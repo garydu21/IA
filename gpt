@@ -1,0 +1,143 @@
+"""import de la classe tableau qui permet de créer sommets et adjacents"""
+from Tableau import Tableau
+"""import de la classe File vue précédemment"""
+from File import File
+"""import de la classe Pile vue précédemment"""
+from Pile import Pile
+
+"""Définition de la classe des listes d'adjacences"""
+class ListeAdj:
+
+    def __init__(self, nbSommets):
+        self._listA = []
+        for i in range(nbSommets ):
+            self._listA.append([])
+
+# --------------------------------------------------
+    # COMPLETER LA CLASSE
+
+    def nbSommets(self):
+        return len(self._listA)
+
+    def nbAretes(self):
+        S=0
+        for i in range(self.nbSommets()):
+            S=S+t.getIeme(i)
+
+        return int(S/2)
+
+    def ajoutArete(self, i, j):
+        self.listA=[[]]*self.nbSommets()
+        self._listA[i-1].append(j)
+        self._listA[j-1].append(i)
+        return self._listA
+
+    def enleveArete(self, i, j):
+        self._listA[i-1].remove(j)
+        self._listA[j-1].remove(i)
+        return self._listA
+
+    def getAretesSommet(self, i):
+        return self._listA[i-1]
+
+    def degreSommet(self, i):
+       return len(self._listA[i-1])
+
+    def degre(self):
+        D=Tableau(len(self._listA))
+        for i in range (0,len(self._listA)):
+            k=i+1
+            D.setIeme(i,int(self.degreSommet(k)))
+
+        return D
+
+# ------------------------------------------------------
+    def __str__(self):
+        return str(self._listA)
+
+    def __repr__(self):
+        return "ListeAdj(" + str(self.nbSommets()) + ")"
+
+    def __eq__(self, list):
+        return self._listA == list
+
+ # Exercice 2 ----------------------------------------------
+ #Parcours d'un graphe en profondeur
+
+    def profondeur(self,u):
+        Visite = [False for i in range(self.nbSommets)]
+
+
+
+ # Exercice 3 ----------------------------------------------
+ #Parcours d'un graphe en largeur
+
+ # A Compléter
+
+ # Exercice 4 ----------------------------------------------
+ #Repérer la présence d'un cycle dans un graphe
+
+# A Compléter
+
+# Exercice 5 ----------------------------------------------
+ #trouve un chemin
+
+# A Compléter
+
+
+
+"""Création d'une instance t de la classe Tableau comportant 5 sommets"""
+t=Tableau(5)
+
+"""Pour chaque sommet nombre de sommets adjacents (voisins), Le sommet 1 a pour indice 0 et possède 3 voisins..."""
+"""Graphe 1"""
+t.setIeme(0,3)
+t.setIeme(1,2)
+t.setIeme(2,2)
+t.setIeme(3,3)
+t.setIeme(4,2)
+
+"""Graphe 2"""
+##t.setIeme(0,2)
+##t.setIeme(1,2)
+##t.setIeme(2,2)
+##t.setIeme(3,1)
+##t.setIeme(4,1)
+
+
+"""Construction de la liste d'adjacence vide de ce tableau"""
+L=ListeAdj(t.nbElements())
+print("nb de sommets",L.nbSommets())
+print("nb d'aretes",L.nbAretes())
+print(L)
+
+"""Ajout des différentes aretes du graphe"""
+
+"""Graphe 1"""
+L.ajoutArete(1,2)
+L.ajoutArete(1,3)
+L.ajoutArete(1,4)
+L.ajoutArete(2,4)
+L.ajoutArete(3,5)
+L.ajoutArete(4,5)
+print(L)
+
+"""Graphe 2"""
+##L.ajoutArete(1,2)
+##L.ajoutArete(1,3)
+##L.ajoutArete(2,4)
+##L.ajoutArete(3,5)
+##print(L)
+
+"""parcours du graphe en profondeur"""
+print(L.profondeur(4))
+
+"""parcours du graphe en largeur"""
+##print(L.largeur(4))
+
+"""Détection de cycle"""
+##print(L.estCyclique(4))
+
+"""Trouve un chemin"""
+##print(L.trouvechemin(2,5,""))
+
